@@ -108,7 +108,10 @@ void intercalacao_basico(char *nome_arquivo_saida, int num_p, Nomes *nome_partic
 }
 
 void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes){
-    //TODO: Implementar essa função
+    Arvore *vetorFolhas [num_p];
+    for (int i = 0, i < num_p; i++){
+        vetorFolhas[i] = (Arvore*)malloc(sizeof(Arvore));
+    }
 }
 
 void intercalacao_otima(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes, int f) {
