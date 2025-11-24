@@ -108,9 +108,12 @@ void intercalacao_basico(char *nome_arquivo_saida, int num_p, Nomes *nome_partic
 }
 
 void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes){
-    Arvore *vetorFolhas [num_p];
-    for (int i = 0, i < num_p; i++){
-        vetorFolhas[i] = (Arvore*)malloc(sizeof(Arvore));
+    TNo *vetorFolhas[num_p];
+    Nomes *atual = nome_particoes;
+    for (int i = 0; i < num_p; i++){
+        vetorFolhas[i] = (TNo*)malloc(sizeof(TNo));
+        vetorFolhas[i]->f = fopen(atual->nome,"rb");
+        TCliente *c = le_cliente(vetorFolhas[i] -> f);
     }
 }
 
