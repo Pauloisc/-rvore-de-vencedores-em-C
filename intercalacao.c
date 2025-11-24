@@ -17,6 +17,12 @@ typedef struct vetor{
     FILE *f;
 }TVet;
 
+struct Arvore {
+   int info;
+   struct Arvore *esq;
+   struct Arvore *dir;
+}
+
 /*
  * Definicao de tipo para no de arvore de vencedores
  */
