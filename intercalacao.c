@@ -121,6 +121,24 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
         vetorFolhas[i]->pai = NULL;
         atual = atual->prox;
     }
+ 
+    int cont = 0;
+    while (num_p != 1){
+        if (num_p%2==0){
+            TNo *nivelArvore[num_p/2];
+            for (int i = 0; i < num_p; i+=2){
+                TNo *noPai = (TNo*)malloc(sizeof(TNo));
+                noPai->esq = vetorFolhas[i];
+                noPai->dir = vetorFolhas[i+1];
+                vetorFolhas[i]->pai = noPai;
+                vetorFolhas[i+1]->pai = noPai;
+                nivelArvore[cont]->vencedor = noPai
+                cont++;
+            }
+        }
+    }
+    
+    while (vetorFolhas->endVencedor != INT_MAX)
 }
 
 void intercalacao_otima(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes, int f) {
