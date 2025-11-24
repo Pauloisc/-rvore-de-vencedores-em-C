@@ -108,6 +108,18 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
         vetorFolhas[i] = (TNo*)malloc(sizeof(TNo));
         vetorFolhas[i]->f = fopen(atual->nome,"rb");
         TCliente *c = le_cliente(vetorFolhas[i] -> f);
+        if (c == NULL){
+            c = cliente (INT_MAX, " ");
+            vetorFolhas[i]->vencedor = c;
+        }
+        else{
+            vetorFolhas[i]->vencedor = c;
+        }
+        vetorFolhas[i]->esq = NULL;
+        vetorFolhas[i]->dir = NULL;
+        vetorFolhas[i]->endVencedor = NULL;
+        vetorFolhas[i]->pai = NULL;
+        atual = atual->prox;
     }
 }
 
