@@ -102,6 +102,7 @@ void intercalacao_basico(char *nome_arquivo_saida, int num_p, Nomes *nome_partic
 }
 
 void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes){
+    //Criar folhas
     TNo *vetorFolhas[num_p];
     Nomes *atual = nome_particoes;
     for (int i = 0; i < num_p; i++){
@@ -121,13 +122,17 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
         vetorFolhas[i]->pai = NULL;
         atual = atual->prox;
     }
- 
-    int cont = 0;
+      //Construir arvore  
+    TNo **nivelAtual = VetorFolhas;
+    int cont = num_p;
+
     while (num_p != 1){
         if (num_p%2==0){
             TNo *nivelArvore[num_p/2];
             for (int i = 0; i < num_p; i+=2){
                 TNo *noPai = (TNo*)malloc(sizeof(TNo));
+                noPai -> f = NULL;
+                noPai -> pai = NULL;
                 noPai->esq = vetorFolhas[i];
                 noPai->dir = vetorFolhas[i+1];
                 vetorFolhas[i]->pai = noPai;
