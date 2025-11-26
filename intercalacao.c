@@ -137,12 +137,12 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
                 noPai->dir = vetorFolhas[i+1];
                 vetorFolhas[i]->pai = noPai;
                 vetorFolhas[i+1]->pai = noPai;
-                if (vetorFolhas[i]->cod < vetorFolhas[i+1]->cod){
-                    noPai->vencedor->cod = vetorFolhas[i]->cod;
+                if (vetorFolhas[i]->vencedor->cod < vetorFolhas[i+1]->vencedor->cod){ // Aqui há a definição do vencedor durante a conexão das folhas
+                    noPai->vencedor = vetorFolhas[i]->vencedor;
                     noPai->endVencedor = vetorFolhas[i];
                 }
                 else{
-                    noPai->vencedor->cod = vetorFolhas[i+1]->cod;
+                    noPai->vencedor = vetorFolhas[i+1]->vencedor;
                     noPai->endVencedor = vetorFolhas[i+1];
                 }
                 nivelArvore[cont] = noPai
@@ -160,12 +160,12 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
                 noPai->dir = vetorFolhas[i+1];
                 vetorFolhas[i]->pai = noPai;
                 vetorFolhas[i+1]->pai = noPai;
-                if (vetorFolhas[i]->cod < vetorFolhas[i+1]->cod){
-                    noPai->vencedor->cod = vetorFolhas[i]->cod;
+                if (vetorFolhas[i]->vencedor->cod < vetorFolhas[i+1]->vencedor->cod){ // Aqui há a definição do vencedor durante a conexão das folhas
+                    noPai->vencedor = vetorFolhas[i]->vencedor;
                     noPai->endVencedor = vetorFolhas[i];
                 }
                 else{
-                    noPai->vencedor->cod = vetorFolhas[i+1]->cod;
+                    noPai->vencedor = vetorFolhas[i+1]->vencedor;
                     noPai->endVencedor = vetorFolhas[i+1];
                 }
                 nivelArvore[cont] = noPai
