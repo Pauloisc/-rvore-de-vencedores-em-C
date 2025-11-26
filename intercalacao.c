@@ -137,6 +137,14 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
                 noPai->dir = vetorFolhas[i+1];
                 vetorFolhas[i]->pai = noPai;
                 vetorFolhas[i+1]->pai = noPai;
+                if (vetorFolhas[i]->cod < vetorFolhas[i+1]->cod){
+                    noPai->vencedor->cod = vetorFolhas[i]->cod;
+                    noPai->endVencedor = vetorFolhas[i];
+                }
+                else{
+                    noPai->vencedor->cod = vetorFolhas[i+1]->cod;
+                    noPai->endVencedor = vetorFolhas[i+1];
+                }
                 nivelArvore[cont] = noPai
                 cont++;
             }
@@ -152,6 +160,14 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
                 noPai->dir = vetorFolhas[i+1];
                 vetorFolhas[i]->pai = noPai;
                 vetorFolhas[i+1]->pai = noPai;
+                if (vetorFolhas[i]->cod < vetorFolhas[i+1]->cod){
+                    noPai->vencedor->cod = vetorFolhas[i]->cod;
+                    noPai->endVencedor = vetorFolhas[i];
+                }
+                else{
+                    noPai->vencedor->cod = vetorFolhas[i+1]->cod;
+                    noPai->endVencedor = vetorFolhas[i+1];
+                }
                 nivelArvore[cont] = noPai
                 cont++;
             }
@@ -165,7 +181,7 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
     TNo *raiz = vetorFolhas[0];  // Cria a raiz que pega justamente a ultima folha criada, que é a raiz
 
     while (raiz->vencedor->cod != INT_MAX) {
-        if (raiz->
+        if (raiz->esq->cod < raiz->dir->cod
     }
 }
 
