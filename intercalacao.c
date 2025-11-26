@@ -103,7 +103,7 @@ void intercalacao_basico(char *nome_arquivo_saida, int num_p, Nomes *nome_partic
 
 void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes){
     //Criar folhas
-    TNo *vetorFolhas[num_p];
+    TNo **vetorFolhas = (TNo**)malloc(num_p * sizeof(TNo*)); // Aloca um vetor de ponteiros dinamicamente, guardará as primeiras folhas com o primeiro registro 
     Nomes *atual = nome_particoes;
     for (int i = 0; i < num_p; i++){
         vetorFolhas[i] = (TNo*)malloc(sizeof(TNo));
@@ -122,13 +122,13 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
         vetorFolhas[i]->pai = NULL;
         atual = atual->prox;
     }
-      //Construir arvore  
+    //Construir arvore  
     TNo **nivelAtual = VetorFolhas;
-    int cont = num_p;
+    int cont = 0;
 
     while (num_p != 1){
         if (num_p%2==0){
-            TNo *nivelArvore[num_p/2];
+            TNo **nivelArvore = (TNo**)malloc((num_p/2) * sizeof(TNo*)); // Aloca um vetor de ponteiros dinamicamente, servirá como cada nível da arvore
             for (int i = 0; i < num_p; i+=2){
                 TNo *noPai = (TNo*)malloc(sizeof(TNo));
                 noPai -> f = NULL;
@@ -137,13 +137,36 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
                 noPai->dir = vetorFolhas[i+1];
                 vetorFolhas[i]->pai = noPai;
                 vetorFolhas[i+1]->pai = noPai;
-                nivelArvore[cont]->vencedor = noPai
+                nivelArvore[cont] = noPai
                 cont++;
             }
+            num_p = num_p/2;
         }
+        else{
+            TNo **nivelArvore = (TNo**)malloc(((num_p + 1)/2) * sizeof(TNo*)); // Aloca um vetor de ponteiros dinamicamente, servirá como cada nível da arvore
+            for (int i = 0; i < num_p-1; i+=2){
+                TNo *noPai = (TNo*)malloc(sizeof(TNo));
+                noPai -> f = NULL;
+                noPai -> pai = NULL;
+                noPai->esq = vetorFolhas[i];
+                noPai->dir = vetorFolhas[i+1];
+                vetorFolhas[i]->pai = noPai;
+                vetorFolhas[i+1]->pai = noPai;
+                nivelArvore[cont] = noPai
+                cont++;
+            }
+            nivelArvore[cont] = vetorFolhas[num_p - 1];
+            num_p = num_p/2+1;
+        }
+        cont = 0
+        vetorFolhas = nivelArvore;
     }
-    
-    while (vetorFolhas->endVencedor != INT_MAX)
+
+    TNo *raiz = vetorFolhas[0];  // Cria a raiz que pega justamente a ultima folha criada, que é a raiz
+
+    while (raiz->vencedor->cod != INT_MAX) {
+        if (raiz->
+    }
 }
 
 void intercalacao_otima(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes, int f) {
