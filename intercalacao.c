@@ -189,7 +189,7 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
     while (raiz->vencedor->cod != INT_MAX) {
         salva_cliente(raiz->vencedor, out); //salva vencedor
         TNo *folhaVencedora = noPai -> endVencedor; //mais facil de encontrar o endvencedor
-        free(folhaVencedora->vencedora;
+        free(folhaVencedora->vencedora);//libera cliente antigo
         TCliente *proximo = le_cliente(folhaVencedora -> f);
         if(proximo == NULL){
             folhaVencedora->vencedor = Cliente(INT_MAX, "");
@@ -199,15 +199,22 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
     }
         TNo *noAtual = folhaVencedora->pai;
         while(noAtual !=NULL){
-            if(noAtual->dir == NULL){
+            if(noAtual->dir == NULL){//n tem direito
                 noAtual->vencedor = noAtual->esq->vencedor;
                 noAtual->endVencedor = noAtual->esq->vencedor;
             }
             else{
-                if(noAtual->esq->vencedor->cod_cliente<= noAtual->dir->vencedor->cod_cliente){
+                if(noAtual->esq->vencedor->cod_cliente <= noAtual->dir->vencedor->cod_cliente){ //comparaçao
                     noAtual->vencedor=noAtual->dir->vencedor;
-                    noAtual
-}
+                    noAtual->endVencedor = noAtual->esq->endVencedor;
+                } else {
+                    noAtual->vencedor = noAtual->dir->vencedor;
+                    noAtual->endVencedor = noAtual->dir->endVencedor;
+                }
+            }
+            noAtual = noAtual->pai;
+        }
+    }
 
 void intercalacao_otima(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes, int f) {
     //TODO: Implementar essa função
