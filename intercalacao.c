@@ -178,8 +178,8 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
         vetorFolhas = nivelArvore;
     }
 
-    TNo *raiz = vetorFolhas[0];  // Cria a raiz que pega justamente a ultima folha criada, que é a raiz
     //intercalçao
+    TNo *raiz = vetorFolhas[0];  // Cria a raiz que pega justamente a ultima folha criada, que é a raiz
     File *saida = fopen(nome_arquivo_saida, "wb");//Precisa abrir o arquivo que recebrá tudo
     if(saida==NULL){
         printf("Erro");
@@ -189,15 +189,24 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
     while (raiz->vencedor->cod != INT_MAX) {
         salva_cliente(raiz->vencedor, out); //salva vencedor
         TNo *folhaVencedora = noPai -> endVencedor; //mais facil de encontrar o endvencedor
-        free(folhaVencedora -> vencedora;
+        free(folhaVencedora->vencedora;
         TCliente *proximo = le_cliente(folhaVencedora -> f);
         if(proximo == NULL){
-            folhaVencedora -> vencedor = Cliente(INT_MAX, "");
+            folhaVencedora->vencedor = Cliente(INT_MAX, "");
         }
         else{
-            folhaVencedora -> vencedor
-        
+            folhaVencedora->vencedor = proximo;
     }
+        TNo *noAtual = folhaVencedora->pai;
+        while(noAtual !=NULL){
+            if(noAtual->dir == NULL){
+                noAtual->vencedor = noAtual->esq->vencedor;
+                noAtual->endVencedor = noAtual->esq->vencedor;
+            }
+            else{
+                if(noAtual->esq->vencedor->cod_cliente<= noAtual->dir->vencedor->cod_cliente){
+                    noAtual->vencedor=noAtual->dir->vencedor;
+                    noAtual
 }
 
 void intercalacao_otima(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes, int f) {
