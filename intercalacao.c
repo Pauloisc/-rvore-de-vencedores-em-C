@@ -179,9 +179,24 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
     }
 
     TNo *raiz = vetorFolhas[0];  // Cria a raiz que pega justamente a ultima folha criada, que é a raiz
-
+    //intercalçao
+    File *saida = fopen(nome_arquivo_saida, "wb");//Precisa abrir o arquivo que recebrá tudo
+    if(saida==NULL){
+        printf("Erro");
+        return;    
+            }
+    
     while (raiz->vencedor->cod != INT_MAX) {
-        if (raiz->esq->cod < raiz->dir->cod
+        salva_cliente(raiz->vencedor, out); //salva vencedor
+        TNo *folhaVencedora = noPai -> endVencedor; //mais facil de encontrar o endvencedor
+        free(folhaVencedora -> vencedora;
+        TCliente *proximo = le_cliente(folhaVencedora -> f);
+        if(proximo == NULL){
+            folhaVencedora -> vencedor = Cliente(INT_MAX, "");
+        }
+        else{
+            folhaVencedora -> vencedor
+        
     }
 }
 
