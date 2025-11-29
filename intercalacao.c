@@ -172,7 +172,7 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
                 cont++;
             }
             nivelArvore[cont] = vetorFolhas[num_p - 1];
-            num_p = num_p/2+1;
+            num_p = (num_p+1)/2;
         }
         cont = 0
         vetorFolhas = nivelArvore;
@@ -184,12 +184,12 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
     if(saida==NULL){
         printf("Erro");
         return;    
-            }
+    }
     
     while (raiz->vencedor->cod != INT_MAX) {
         salva_cliente(raiz->vencedor, out); //salva vencedor
         TNo *folhaVencedora = noPai -> endVencedor; //mais facil de encontrar o endvencedor
-        free(folhaVencedora->vencedora);//libera cliente antigo
+        free(folhaVencedora->vencedor);//libera cliente antigo
         TCliente *proximo = le_cliente(folhaVencedora -> f);
         if(proximo == NULL){
             folhaVencedora->vencedor = Cliente(INT_MAX, "");
@@ -199,7 +199,7 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
     }
         TNo *noAtual = folhaVencedora->pai;
         while(noAtual !=NULL){
-            if(noAtual->dir == NULL){//n tem direito
+            if(noAtual->dir == NULL){//n tem direita
                 noAtual->vencedor = noAtual->esq->vencedor;
                 noAtual->endVencedor = noAtual->esq->vencedor;
             }
@@ -216,6 +216,7 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
             noAtual = noAtual->pai;
         }
     }
+}
 
 void intercalacao_otima(char *nome_arquivo_saida, int num_p, Nomes *nome_particoes, int f) {
     //TODO: Implementar essa função
