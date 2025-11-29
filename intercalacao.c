@@ -207,7 +207,8 @@ void intercalacao_arv_vencedores(char *nome_arquivo_saida, int num_p, Nomes *nom
                 if(noAtual->esq->vencedor->cod_cliente <= noAtual->dir->vencedor->cod_cliente){ //comparaçao
                     noAtual->vencedor=noAtual->dir->vencedor;
                     noAtual->endVencedor = noAtual->esq->endVencedor;
-                } else {
+                } 
+                else {
                     noAtual->vencedor = noAtual->dir->vencedor;
                     noAtual->endVencedor = noAtual->dir->endVencedor;
                 }
